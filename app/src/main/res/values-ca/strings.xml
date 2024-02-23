@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Desenvolupament de personatge</string>
+    <string name="characterName">Nom</string>
+    <string name="dateTitle">Data</string>
+    <string name="characterAge">Edat</string>
+    <string name="characterSalary">Salari</string>
+    <string name="characterPatrimony">Patrimoni</string>
+    <string name="defaultProfile">Perfil per defecte</string>
+    <string name="characterMood">Estat d\'ànim</string>
+    <string name="characterHealth">Salut</string>
+    <string name="characterPhysic">Condició física</string>
+    <string name="characterLevel">Nivell</string>
+    <string name="Confirmation">Confirmar</string>
+    <string name="mainCharacterScreenTitle">Perfil principal\n</string>
+    <string name="settingsScreenTitle">Configuració</string>
+    <string name="charactersListScreenTitle">Perfils</string>
+    <string name="deleteConfirmationTitle">Segur que vols borrar aquest perfil?</string>
+    <string name="deleteAllProfilesConfirmationTitle">Segur que vols borrar tots els perfils?</string>
+    <string name="deleteConfirmationSubtitle">Un cop fet, aquesta acció no pot ser revocada</string>
+    <string name="dateOrderText">Ordenar per data</string>
+    <string name="nameOrderText">Ordenar per nom</string>
+    <string name="levelOrderText">Ordenar per nivell</string>
+    <string name="unhealthLabel">Poc saludable</string>
+    <string name="healthyLabel">Saludable</string>
+    <string name="normalLabel">Normal</string>
+    <string name="fineLabel">Bona</string>
+    <string name="horribleLabel">Horrible</string>
+    <string name="ecstaticLabel">Meravellós</string>
+    <string name="devastatedLabel">Desvastat</string>
+    <string name="happyLabel">Content</string>
+    <string name="sadLabel">Trist</string>
+    <string name="unfitLabel">Gens en forma</string>
+    <string name="outOfShapeLabel">Baix de forma</string>
+    <string name="averageLabel">En la mitja</string>
+    <string name="fitLabel">En forma</string>
+    <string name="confirmCreation">Confirma aquest perfil</string>
+    <string name="confirmCreationSubtitle">Estan tots els camps correctes?</string>
+    <string name="appTheme">Tema visual de l\'aplicació</string>
+    <string name="appLanguage">Idioma</string>
+    <string name="changeLanguageTitle">Estàs segur que vols canviar l\'idioma?</string>
+    <string name="changeLanguageSubtitle">Ho pots tornar a canviar després</string>
+    <string name="changeThemeTitle">Estàs segur que vols canviar el tema de l\'aplicació?</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="lightTheme">Tema clar</string>
+    <string name="darkTheme">Tema fosc</string>
+    <string name="deleteProfiles">Borrar tots els perfils</string>
+
+
+
+
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Desarrollo de personaje</string>
+    <string name="characterName">Nombre</string>
+    <string name="dateTitle">Fecha</string>
+    <string name="characterAge">Edad</string>
+    <string name="characterSalary">Salario</string>
+    <string name="characterPatrimony">Patrimonio</string>
+    <string name="defaultProfile">Perfil por defecto</string>
+    <string name="characterMood">Estado de ánimo</string>
+    <string name="characterHealth">Salud</string>
+    <string name="characterPhysic">Condición física</string>
+    <string name="characterLevel">Nivel</string>
+    <string name="Confirmation">Confirmar</string>
+    <string name="mainCharacterScreenTitle">Perfil principal</string>
+    <string name="settingsScreenTitle">Configuración</string>
+    <string name="charactersListScreenTitle">Perfiles</string>
+    <string name="deleteConfirmationTitle">¿Estás Seguro que quieres borrar este perfil?</string>
+    <string name="deleteAllProfilesConfirmationTitle">¿Seguro que quieres borrar todos los perfiles?</string>
+    <string name="deleteConfirmationSubtitle">Una vez hecho, esta acción no podrá ser revocada</string>
+    <string name="dateOrderText">Ordenar por fecha</string>
+    <string name="nameOrderText">Ordenar por nombre</string>
+    <string name="levelOrderText">Ordenar por nivel</string>
+    <string name="unhealthLabel">Poco saludable</string>
+    <string name="healthyLabel">Saludable</string>
+    <string name="normalLabel">Normal</string>
+    <string name="fineLabel">Buena</string>
+    <string name="horribleLabel">Horrible</string>
+    <string name="ecstaticLabel">Maravilloso</string>
+    <string name="devastatedLabel">Devastado</string>
+    <string name="happyLabel">Contento</string>
+    <string name="sadLabel">Triste</string>
+    <string name="unfitLabel">Nada en forma</string>
+    <string name="outOfShapeLabel">Fuera de forma</string>
+    <string name="averageLabel">En la media</string>
+    <string name="fitLabel">En forma</string>
+    <string name="confirmCreation">Confirma este perfil</string>
+    <string name="confirmCreationSubtitle">¿Están todos los campos correctos?</string>
+    <string name="appTheme">Tema visual de la aplicación</string>
+    <string name="appLanguage">Idioma</string>
+    <string name="changeLanguageTitle">Estás seguro que quieres cambiar el idioma?</string>
+    <string name="changeLanguageSubtitle">Lo puedes cambiar más tarde</string>
+    <string name="changeThemeTitle">¿Estás seguro que quieres cambiar el tema de la aplicación?</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="lightTheme">Tema claro</string>
+    <string name="darkTheme">Tema oscuro</string>
+    <string name="deleteProfiles">Borrar todos los perfiles</string>
+
+
+
+
+</resources>

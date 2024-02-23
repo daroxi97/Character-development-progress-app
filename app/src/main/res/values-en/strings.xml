@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Character development</string>
+    <string name="characterName">Name</string>
+    <string name="dateTitle">Date</string>
+    <string name="characterAge">Age</string>
+    <string name="characterSalary">Salary</string>
+    <string name="characterPatrimony">Patrimony</string>
+    <string name="defaultProfile">Default profile</string>
+    <string name="characterMood">Mood</string>
+    <string name="characterHealth">Health</string>
+    <string name="characterPhysic">Physical condition</string>
+    <string name="characterLevel">Level</string>
+    <string name="Confirmation">Confirm</string>
+    <string name="mainCharacterScreenTitle">Main Character\n</string>
+    <string name="settingsScreenTitle">Settings</string>
+    <string name="charactersListScreenTitle">Profiles</string>
+    <string name="deleteConfirmationTitle">\You want to delete this profile?\</string>
+    <string name="deleteAllProfilesConfirmationTitle">\You want to delete all the profiles?\</string>
+    <string name="deleteConfirmationSubtitle">Once completed, this action cannot be revoked</string>
+    <string name="dateOrderText">Order by date</string>
+    <string name="nameOrderText">Order by name</string>
+    <string name="levelOrderText">Order by level</string>
+    <string name="unhealthLabel">Unhealthy</string>
+    <string name="healthyLabel">Healthy</string>
+    <string name="normalLabel">Normal</string>
+    <string name="fineLabel">Fine</string>
+    <string name="horribleLabel">Horrible</string>
+    <string name="ecstaticLabel">Ecstatic</string>
+    <string name="devastatedLabel">Devastated</string>
+    <string name="happyLabel">Happy</string>
+    <string name="sadLabel">Sad</string>
+    <string name="unfitLabel">Unfit</string>
+    <string name="outOfShapeLabel">Out of shape</string>
+    <string name="averageLabel">Average</string>
+    <string name="fitLabel">Fit</string>
+    <string name="confirmCreation">Confirm this profile</string>
+    <string name="confirmCreationSubtitle">Are all the fields correct?</string>
+    <string name="appTheme">Application visual theme</string>
+    <string name="appLanguage">Language</string>
+    <string name="changeLanguageTitle">¿Are you sure to change the language?</string>
+    <string name="changeLanguageSubtitle">You can change it again later</string>
+    <string name="changeThemeTitle">Are you sure you want to change the application theme?</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="lightTheme">Light theme</string>
+    <string name="darkTheme">Dark theme</string>
+    <string name="deleteProfiles">Delete all the profiles</string>
+
+
+
+</resources>
