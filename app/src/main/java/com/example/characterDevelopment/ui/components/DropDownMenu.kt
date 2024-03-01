@@ -1,22 +1,4 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-@file:JvmName("DropDownMenuKt")
-
-package com.example.compose.rally.ui.components
+package com.example.characterDevelopment.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -48,6 +30,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 
+//A row with a title and content. If presses appears a dropdown with different elements. The selected one will be the content
 @Composable
 fun dropDownMenuRow(
     title: String, elements: List<String>, rowHeight: Dp = 68.dp
@@ -89,14 +72,15 @@ fun dropDownMenuRow(
                 }
             }
         }
-        RallyDivider()
+        AppUiDivider()
 
 
     }
-    return selectedText.toString()
+    return selectedText
 
 }
 
+//Same as the last one, but this time will have a confirmation dialog.
 @Composable
 fun dropDownMenuRowWithConfirmation(
     title: String,
@@ -160,68 +144,15 @@ fun dropDownMenuRowWithConfirmation(
                 }
             }
         }
-        RallyDivider()
+        AppUiDivider()
 
 
     }
-    return selectedText.toString()
+    return selectedText
 
 }
 
-@Composable
-fun ClickableSimpleTextFieldWithConfirmation(
-    title: String,
-    text: String,
-    confirmationTitle: String,
-    confirmationSubtitle: String,
-    rowHeight: Dp = 68.dp,
-    clickAction: () -> Unit = {},
-) {
-
-    var confirmDialog: Boolean by remember { mutableStateOf(false) }
-    var expanded by remember { mutableStateOf(false) }
-
-    val icon = if (expanded)
-        Icons.Filled.KeyboardArrowUp
-    else
-        Icons.Filled.KeyboardArrowDown
-
-
-    Column() {
-
-        ClickableSimpleTextField(
-            title = title,
-            text = text,
-            clickAction = {
-                confirmDialog = true
-                expanded = !expanded
-            },
-            icon = icon,
-            rowHeight = rowHeight,
-            modifier = Modifier.height(rowHeight)
-        )
-
-        ConfirmationDialog(
-            confirmationTitle,
-            confirmationSubtitle,
-            confirmDialog,
-            {
-                confirmDialog = false
-                expanded = false
-            },
-            {
-                clickAction()
-                confirmDialog = false
-                expanded = false
-
-            })
-
-        RallyDivider()
-
-    }
-}
-
-
+//An image that if is pressed show a dropdown with different options
 @Composable
 fun dropDownMenuIcon(
     image: ImageVector,
@@ -272,8 +203,7 @@ fun dropDownMenuIcon(
             }
         }
 
-
     }
-    return selectedText.toString()
+    return selectedText
 
 }

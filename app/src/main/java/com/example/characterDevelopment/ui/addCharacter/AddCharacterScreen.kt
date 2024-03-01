@@ -26,12 +26,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.compose.rally.ui.components.BaseDatePickerDialog
-import com.example.compose.rally.ui.components.BaseSimpleIntegersField
-import com.example.compose.rally.ui.components.BaseSimpleTextField
-import com.example.compose.rally.ui.components.BaseSwitch
-import com.example.compose.rally.ui.components.ConfirmationDialog
-import com.example.compose.rally.ui.components.dropDownMenuRow
+import com.example.characterDevelopment.ui.components.baseClickableRowDatePickerDialog
+import com.example.characterDevelopment.ui.components.baseSimpleIntegersField
+import com.example.characterDevelopment.ui.components.baseSimpleTextField
+import com.example.characterDevelopment.ui.components.baseSwitch
+import com.example.characterDevelopment.ui.components.ConfirmationDialog
+import com.example.characterDevelopment.ui.components.dropDownMenuRow
 import com.example.characterDevelopment.R
 import com.example.characterDevelopment.data.database.entities.Health
 import com.example.characterDevelopment.data.database.entities.healths
@@ -84,32 +84,32 @@ fun CharacterScreenBody(
             .padding(start = 16.dp, end = 16.dp, top = 16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        var name = BaseSimpleTextField(title = stringResource(id = R.string.characterName))
+        val name = baseSimpleTextField(title = stringResource(id = R.string.characterName))
 
-        var date = BaseDatePickerDialog()
+        val date = baseClickableRowDatePickerDialog()
 
-        var age =
-            BaseSimpleIntegersField(title = stringResource(id = R.string.characterAge))
+        val age =
+            baseSimpleIntegersField(title = stringResource(id = R.string.characterAge))
 
-        var salary =
-            BaseSimpleIntegersField(title = stringResource(id = R.string.characterSalary))
+        val salary =
+            baseSimpleIntegersField(title = stringResource(id = R.string.characterSalary))
 
-        var patrimony =
-            BaseSimpleIntegersField(title = stringResource(id = R.string.characterPatrimony))
+        val patrimony =
+            baseSimpleIntegersField(title = stringResource(id = R.string.characterPatrimony))
 
-        var health =
+        val health =
             setHealth(dropDownMenuRow(stringResource(id = R.string.characterHealth), healths))
 
-        var mood = setMood(dropDownMenuRow(stringResource(id = R.string.characterMood), moods))
+        val mood = setMood(dropDownMenuRow(stringResource(id = R.string.characterMood), moods))
 
-        var physicalCondition = setPhysicalCondition(
+        val physicalCondition = setPhysicalCondition(
             dropDownMenuRow(
                 stringResource(id = R.string.characterPhysic),
                 physicalConditions
             )
         )
 
-        var mainCharacter = BaseSwitch(title = stringResource(id = R.string.defaultProfile))
+        val mainCharacter = baseSwitch(title = stringResource(id = R.string.defaultProfile))
 
         //check if all labels are set
         if (name.isNotBlank() && date.isNotBlank() && patrimony.isNotBlank() && age.isNotBlank() && salary.isNotBlank() && health != null && mood != null && physicalCondition != null) {

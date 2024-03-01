@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 /**
  * Contract for information needed on every Rally navigation destination
  */
-interface AppDestinations {
+interface AppScreens {
     val icon: ImageVector
     val route: String
     var screenTitle: String
@@ -23,20 +23,20 @@ interface AppDestinations {
 /**
  * Rally app navigation destinations
  */
-object MainCharacter : AppDestinations {
+object MainCharacter : AppScreens {
     override val icon = Icons.Filled.Accessibility
     override val route = "Level"
     override var screenTitle: String by mutableStateOf("")
 }
 
-object AppSettings: AppDestinations {
+object AppSettings: AppScreens {
     override val icon = Icons.Filled.Settings
     override val route = "Configuration"
     override var screenTitle: String by mutableStateOf("")
 
 }
 
-object CharactersList: AppDestinations {
+object CharactersList: AppScreens {
     override val icon = Icons.Filled.Contacts
     override val route = "List"
     override var screenTitle: String by mutableStateOf("")

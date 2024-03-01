@@ -1,20 +1,4 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-package com.example.compose.rally.ui.components
+package com.example.characterDevelopment.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -45,12 +29,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.Button
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.SelectableDates
-import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -75,13 +55,6 @@ import androidx.compose.ui.unit.toSize
 import com.example.characterDevelopment.R
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import java.text.SimpleDateFormat
-import java.util.Date
-
-/**
- * A row representing the basic information of an Account.
- */
-
 
 @Composable
 fun SimpleRow(
@@ -96,9 +69,6 @@ fun SimpleRow(
     )
 }
 
-/**
- * A row representing the basic information of a Bill.
- */
 @Composable
 fun CharacterRow(
     modifier: Modifier = Modifier,
@@ -135,7 +105,7 @@ private fun BaseRow(
             .verticalScroll(rememberScrollState())
             .clearAndSetSemantics {
                 contentDescription =
-                    "$title name in $subtitle, value:  ${amount.toString()}"
+                    "$title name in $subtitle, value: $amount"
             },
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -182,7 +152,7 @@ private fun BaseRow(
             )
         }
     }
-    RallyDivider()
+    AppUiDivider()
 }
 
 
@@ -217,19 +187,17 @@ private fun BaseSimpleRow(
         Spacer(Modifier.width(16.dp))
 
     }
-    RallyDivider()
+    AppUiDivider()
 }
 
 @Composable
-fun BaseSimpleIntegersField(
+fun baseSimpleIntegersField(
     title: String,
     modifier: Modifier = Modifier,
     rowHeight: Dp = 68.dp
 
 ): String {
     var text by remember { mutableStateOf(TextFieldValue()) }
-    val typography = MaterialTheme.typography
-
     Row(
         modifier = modifier
             .height(rowHeight)
@@ -255,15 +223,13 @@ fun BaseSimpleIntegersField(
 
 
     }
-
+    AppUiDivider()
     return text.text
-
-    RallyDivider()
 }
 
 
 @Composable
-fun BaseSimpleTextField(
+fun baseSimpleTextField(
     title: String,
     modifier: Modifier = Modifier,
     rowHeight: Dp = 68.dp
@@ -293,9 +259,9 @@ fun BaseSimpleTextField(
             label = { Text(text = title) })
 
     }
+    AppUiDivider()
     return text.text
 
-    RallyDivider()
 }
 
 
@@ -304,9 +270,9 @@ fun ClickableSimpleTextField(
     title: String,
     text: String,
     clickAction: () -> Unit,
+    modifier: Modifier = Modifier,
     icon: ImageVector? = null,
     switch: Boolean = false,
-    modifier: Modifier = Modifier,
     rowHeight: Dp = 68.dp,
 
 
@@ -386,60 +352,12 @@ readOnly = true,
                 label = { Text(text = title) })
         }
     }
-    RallyDivider()
-}
-
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun BaseDatePickerDialog(
-    onDateSelected: (String) -> Unit,
-    onDismiss: () -> Unit
-) {
-    val initialDate: Long = System.currentTimeMillis()
-
-    val datePickerState = rememberDatePickerState(
-        initialSelectedDateMillis = initialDate,
-        selectableDates = object : SelectableDates {
-            override fun isSelectableDate(utcTimeMillis: Long): Boolean {
-                return utcTimeMillis <= System.currentTimeMillis()
-            }
-        })
-
-    val selectedDate = datePickerState.selectedDateMillis?.let {
-        convertMillisToDate(it)
-    } ?: ""
-
-    DatePickerDialog(
-        onDismissRequest = { onDismiss() },
-        confirmButton = {
-            Button(onClick = {
-                onDateSelected(selectedDate)
-                onDismiss()
-            }
-
-            ) {
-                Text(text = stringResource(id = R.string.confirm), color = Color.White)
-            }
-        },
-        dismissButton = {
-            Button(onClick = {
-                onDismiss()
-            }) {
-                Text(text = stringResource(id = R.string.cancel), color = Color.White)
-            }
-        }
-    ) {
-        DatePicker(
-            state = datePickerState
-        )
-    }
-
+    AppUiDivider()
 }
 
 
 @Composable
-fun BaseSwitch(title: String): Boolean {
+fun baseSwitch(title: String): Boolean {
 
     var selectedBoolean by remember { mutableStateOf(false) }
 
@@ -458,41 +376,11 @@ fun BaseSwitch(title: String): Boolean {
         )
 
 
-        RallyDivider()
+        AppUiDivider()
 
 
     }
     return selectedBoolean
-}
-
-@Composable
-fun BaseDatePickerDialog(): String {
-
-    var date by remember {
-        mutableStateOf("")
-    }
-
-    var showDatePicker by remember {
-        mutableStateOf(false)
-    }
-
-    ClickableSimpleTextField(
-        title = stringResource(id = R.string.dateTitle),
-        text = date,
-        clickAction = {
-            showDatePicker = true
-        }
-    )
-
-
-
-    if (showDatePicker) {
-        BaseDatePickerDialog(
-            onDateSelected = { date = it },
-            onDismiss = { showDatePicker = false }
-        )
-    }
-    return date.toString()
 }
 
 
@@ -539,12 +427,62 @@ private fun AccountIndicator(color: Color, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun RallyDivider(modifier: Modifier = Modifier) {
+fun AppUiDivider(modifier: Modifier = Modifier) {
     Divider(color = MaterialTheme.colors.background, thickness = 1.dp, modifier = modifier)
 }
 
 
-private fun convertMillisToDate(millis: Long): String {
-    val formatter = SimpleDateFormat("dd/MM/yyyy")
-    return formatter.format(Date(millis))
+
+
+@Composable
+fun ClickableSimpleTextFieldWithConfirmation(
+    title: String,
+    text: String,
+    confirmationTitle: String,
+    confirmationSubtitle: String,
+    rowHeight: Dp = 68.dp,
+    clickAction: () -> Unit = {},
+) {
+
+    var confirmDialog: Boolean by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
+
+    val icon = if (expanded)
+        Icons.Filled.KeyboardArrowUp
+    else
+        Icons.Filled.KeyboardArrowDown
+
+
+    Column() {
+
+        ClickableSimpleTextField(
+            title = title,
+            text = text,
+            clickAction = {
+                confirmDialog = true
+                expanded = !expanded
+            },
+            icon = icon,
+            rowHeight = rowHeight,
+            modifier = Modifier.height(rowHeight)
+        )
+
+        ConfirmationDialog(
+            confirmationTitle,
+            confirmationSubtitle,
+            confirmDialog,
+            {
+                confirmDialog = false
+                expanded = false
+            },
+            {
+                clickAction()
+                confirmDialog = false
+                expanded = false
+
+            })
+
+        AppUiDivider()
+
+    }
 }

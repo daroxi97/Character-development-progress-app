@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.characterDevelopment.R
 import com.example.characterDevelopment.ui.components.CharacterInformationBody
-import com.example.compose.rally.ui.components.SimpleRow
+import com.example.characterDevelopment.ui.components.SimpleRow
 import com.example.characterDevelopment.domain.Models.CharacterDomainModel
 import com.example.characterDevelopment.ui.ViewModels.CharacterCreatorViewModel
 import java.text.NumberFormat
@@ -60,24 +60,24 @@ fun CharacterScreenBody(mvvm: CharacterCreatorViewModel, isMainCharacter: Boolea
         character = mvvm.getMainCharacter()
     }
 
-    character?.let { character ->
+    character?.let { profile ->
         //Shows the circle with the level
         CharacterInformationBody(modifier = Modifier.semantics {
             contentDescription = "Character level Screen"
         },
-            circleValue = character.level,
+            circleValue = profile.level,
             colorsCircle = listOf(Color.Gray, Color.Yellow),
             circleMaxNumber = 100f,
             circleLabel = stringResource(R.string.characterLevel),
             rows = {
                 //All the labels with profile information
-                characterRows(character)
+                CharacterRows(profile)
             })
     } ?: run {}
 }
 
 @Composable
-fun characterRows(character: CharacterDomainModel) {
+fun CharacterRows(character: CharacterDomainModel) {
     val format = NumberFormat.getNumberInstance(Locale.getDefault())
 
     SimpleRow(
@@ -85,7 +85,7 @@ fun characterRows(character: CharacterDomainModel) {
     )
 
     SimpleRow(
-        name = stringResource(id = R.string.dateTitle), amount = character.date.toString()
+        name = stringResource(id = R.string.dateTitle), amount = character.date
     )
 
     SimpleRow(

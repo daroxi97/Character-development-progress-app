@@ -1,4 +1,3 @@
-
 package com.example.characterDevelopment.ui.theme
 
 import androidx.compose.material.darkColors
