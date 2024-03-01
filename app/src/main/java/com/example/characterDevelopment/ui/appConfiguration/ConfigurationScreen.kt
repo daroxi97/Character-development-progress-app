@@ -21,9 +21,9 @@ import com.example.characterDevelopment.data.database.entities.Theme
 import com.example.characterDevelopment.data.database.entities.languages
 import com.example.characterDevelopment.data.database.entities.themes
 import com.example.characterDevelopment.domain.Models.SettingsDomainModel
-import com.example.characterDevelopment.ui.ViewModels.CharacterCreatorViewModel
-import com.example.characterDevelopment.ui.ViewModels.SettingsViewModel
-import com.example.characterDevelopment.ui.Views.updateTextsLanguage
+import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
+import com.example.characterDevelopment.ui.viewModels.SettingsViewModel
+import com.example.characterDevelopment.ui.views.UpdateTextsLanguage
 import com.example.characterDevelopment.ui.components.ClickableSimpleTextFieldWithConfirmation
 
 @Composable
@@ -99,7 +99,7 @@ fun ConfigurationScreen(charactersVm: CharacterCreatorViewModel, settingsVm: Set
             changeLanguage = false
             settingsVm.updateConfiguration = true
             settingsVm.saveLanguage(LocalContext.current, language)
-            updateTextsLanguage()
+            UpdateTextsLanguage()
         }
     }
 }

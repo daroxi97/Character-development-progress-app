@@ -1,4 +1,4 @@
-package com.example.characterDevelopment.ui.CharacterLevel
+package com.example.characterDevelopment.ui.characterLevel
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -20,7 +20,7 @@ import com.example.characterDevelopment.R
 import com.example.characterDevelopment.ui.components.CharacterInformationBody
 import com.example.characterDevelopment.ui.components.SimpleRow
 import com.example.characterDevelopment.domain.Models.CharacterDomainModel
-import com.example.characterDevelopment.ui.ViewModels.CharacterCreatorViewModel
+import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
 import java.text.NumberFormat
 import java.util.Locale
 

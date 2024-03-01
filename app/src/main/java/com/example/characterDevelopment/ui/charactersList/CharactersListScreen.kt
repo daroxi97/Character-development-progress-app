@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.characterDevelopment.ui.CharactersList
+package com.example.characterDevelopment.ui.charactersList
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -51,16 +51,16 @@ import com.example.characterDevelopment.ui.components.dropDownMenuIcon
 import com.example.characterDevelopment.R
 import com.example.characterDevelopment.data.database.entities.orders
 import com.example.characterDevelopment.domain.Models.CharacterDomainModel
-import com.example.characterDevelopment.ui.CharacterLevel.CharacterScreen
-import com.example.characterDevelopment.ui.ViewModels.CharacterCreatorViewModel
-import com.example.characterDevelopment.ui.ViewModels.SettingsViewModel
-import com.example.characterDevelopment.ui.Views.AppSettings
-import com.example.characterDevelopment.ui.Views.AppScreens
-import com.example.characterDevelopment.ui.Views.CharactersList
-import com.example.characterDevelopment.ui.Views.MainCharacter
-import com.example.characterDevelopment.ui.Views.addCharacterRoute
-import com.example.characterDevelopment.ui.Views.appTabRowScreen
-import com.example.characterDevelopment.ui.Views.updateTextsLanguage
+import com.example.characterDevelopment.ui.characterLevel.CharacterScreen
+import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
+import com.example.characterDevelopment.ui.viewModels.SettingsViewModel
+import com.example.characterDevelopment.ui.views.AppSettings
+import com.example.characterDevelopment.ui.views.AppScreens
+import com.example.characterDevelopment.ui.views.CharactersList
+import com.example.characterDevelopment.ui.views.MainCharacter
+import com.example.characterDevelopment.ui.views.addCharacterRoute
+import com.example.characterDevelopment.ui.views.appTabRowScreen
+import com.example.characterDevelopment.ui.views.UpdateTextsLanguage
 import com.example.characterDevelopment.ui.appConfiguration.ConfigurationScreen
 
 @Composable
@@ -69,7 +69,7 @@ fun CharacterListScreen(
     charactersVm: CharacterCreatorViewModel,
     settingsVm: SettingsViewModel
 ) {
-    updateTextsLanguage()
+    UpdateTextsLanguage()
 
     var currentScreen: AppScreens by remember { mutableStateOf(CharactersList) }
 

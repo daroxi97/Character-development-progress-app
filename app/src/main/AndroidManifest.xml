@@ -15,9 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesarrolloDePersonaje"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
-            android:name=".ui.Views.MainActivity"
+            android:name=".ui.views.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DesarrolloDePersonaje">

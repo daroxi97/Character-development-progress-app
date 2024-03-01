@@ -46,7 +46,7 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.characterDevelopment.ui.Views.AppScreens
+import com.example.characterDevelopment.ui.views.AppScreens
 
 
 val TabHeight = 70.dp

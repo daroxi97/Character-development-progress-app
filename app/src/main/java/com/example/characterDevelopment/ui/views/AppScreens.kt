@@ -1,4 +1,4 @@
-package com.example.characterDevelopment.ui.Views
+package com.example.characterDevelopment.ui.views
 
 
 import androidx.compose.material.icons.Icons

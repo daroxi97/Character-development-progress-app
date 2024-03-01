@@ -39,8 +39,8 @@ import com.example.characterDevelopment.data.database.entities.Mood
 import com.example.characterDevelopment.data.database.entities.moods
 import com.example.characterDevelopment.data.database.entities.PhysicalCondition
 import com.example.characterDevelopment.data.database.entities.physicalConditions
-import com.example.characterDevelopment.ui.ViewModels.CharacterCreatorViewModel
-import com.example.characterDevelopment.ui.Views.CharactersList
+import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
+import com.example.characterDevelopment.ui.views.CharactersList
 import com.example.characterDevelopment.utils.capitalizeFirstLetter
 
 
