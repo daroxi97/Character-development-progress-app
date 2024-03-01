@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 
-private const val DividerLengthInDegrees = 1.8f
+private const val DIVIDER_LENGTH_IN_DEGREES = 1.8f
 
 /**
  * A donut chart that animates when loaded.
@@ -34,8 +34,9 @@ fun AnimatedCircle(
             .apply { targetState = AnimatedCircleProgress.END }
     }
     val stroke = with(LocalDensity.current) { Stroke(5.dp.toPx()) }
-    val transition = updateTransition(currentState)
+    val transition = updateTransition(currentState, label = "transition of circle animation")
     val angleOffset by transition.animateFloat(
+        label = "circle angle Animation",
         transitionSpec = {
             tween(
                 delayMillis = 500,
@@ -50,7 +51,9 @@ fun AnimatedCircle(
             360f
         }
     }
+
     val shift by transition.animateFloat(
+        label = "Smooth end on circle animation",
         transitionSpec = {
             tween(
                 delayMillis = 500,
@@ -79,8 +82,8 @@ fun AnimatedCircle(
             val sweep = proportion * angleOffset
             drawArc(
                 color = colors[index],
-                startAngle = startAngle + DividerLengthInDegrees / 2,
-                sweepAngle = sweep - DividerLengthInDegrees,
+                startAngle = startAngle + DIVIDER_LENGTH_IN_DEGREES / 2,
+                sweepAngle = sweep - DIVIDER_LENGTH_IN_DEGREES,
                 topLeft = topLeft,
                 size = size,
                 useCenter = false,
