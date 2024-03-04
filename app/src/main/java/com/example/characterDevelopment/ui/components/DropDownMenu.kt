@@ -29,8 +29,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-
-//A row with a title and content. If presses appears a dropdown with different elements. The selected one will be the content
+/**
+ * A row with a title and content. If presses appears a dropdown with different elements. The selected one will be the content
+ */
 @Composable
 fun dropDownMenuRow(
     title: String, elements: List<String>, rowHeight: Dp = 68.dp
@@ -79,8 +80,9 @@ fun dropDownMenuRow(
     return selectedText
 
 }
-
-//Same as the last one, but this time will have a confirmation dialog.
+/**
+ * Same as dropDownMenuRow, but this time will have a confirmation dialog.
+ */
 @Composable
 fun dropDownMenuRowWithConfirmation(
     title: String,
@@ -151,8 +153,9 @@ fun dropDownMenuRowWithConfirmation(
     return selectedText
 
 }
-
-//An image that if is pressed show a dropdown with different options
+/**
+ * An image that if is pressed show a dropdown with different options
+ */
 @Composable
 fun dropDownMenuIcon(
     image: ImageVector,

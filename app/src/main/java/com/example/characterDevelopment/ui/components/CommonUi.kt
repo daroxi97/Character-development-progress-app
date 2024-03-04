@@ -56,6 +56,43 @@ import com.example.characterDevelopment.R
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 
+/**
+ * Basic row with a title and content according to that title
+ */
+@Composable
+private fun BaseSimpleRow(
+    modifier: Modifier = Modifier,
+    title: String,
+    content: String,
+) {
+    Row(
+        modifier = modifier
+            .height(68.dp)
+            .verticalScroll(rememberScrollState())
+            .clearAndSetSemantics {
+                contentDescription =
+                    "$title : $content"
+            },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        val typography = MaterialTheme.typography
+
+        Spacer(Modifier.width(12.dp))
+        Text(text = title, style = typography.body1)
+
+        Spacer(Modifier.weight(1f))
+        Text(
+            text = content,
+            style = typography.h6,
+            modifier = Modifier.align(Alignment.CenterVertically)
+        )
+
+        Spacer(Modifier.width(16.dp))
+
+    }
+    AppUiDivider()
+}
+
 @Composable
 fun SimpleRow(
     modifier: Modifier = Modifier,
@@ -69,25 +106,9 @@ fun SimpleRow(
     )
 }
 
-@Composable
-fun CharacterRow(
-    modifier: Modifier = Modifier,
-    name: String,
-    date: String,
-    level: Int,
-    color: Color,
-    removeCharacter: () -> Unit = {}
-) {
-    BaseRow(
-        modifier = modifier,
-        color = color,
-        title = stringResource(id = R.string.characterName) + ": $name",
-        subtitle = stringResource(id = R.string.dateTitle) + ": $date",
-        amount = stringResource(id = R.string.characterLevel) + ": ${level.toString()}",
-        removeCharacter = removeCharacter
-    )
-}
-
+/**row with a title,  date, a number on the right (amount) and a set color. At the right has a delete icon
+if pressed the icon calls removeCharacter function
+ */
 
 @Composable
 private fun BaseRow(
@@ -155,41 +176,40 @@ private fun BaseRow(
     AppUiDivider()
 }
 
-
+/**
+ * A vertical colored line that is used in a [BaseRow] to differentiate accounts.
+ */
 @Composable
-private fun BaseSimpleRow(
-    modifier: Modifier = Modifier,
-    title: String,
-    content: String,
-) {
-    Row(
-        modifier = modifier
-            .height(68.dp)
-            .verticalScroll(rememberScrollState())
-            .clearAndSetSemantics {
-                contentDescription =
-                    "$title : $content"
-            },
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        val typography = MaterialTheme.typography
-
-        Spacer(Modifier.width(12.dp))
-        Text(text = title, style = typography.body1)
-
-        Spacer(Modifier.weight(1f))
-        Text(
-            text = content,
-            style = typography.h6,
-            modifier = Modifier.align(Alignment.CenterVertically)
-        )
-
-        Spacer(Modifier.width(16.dp))
-
-    }
-    AppUiDivider()
+private fun AccountIndicator(color: Color, modifier: Modifier = Modifier) {
+    Spacer(
+        modifier
+            .size(4.dp, 36.dp)
+            .background(color = color)
+    )
 }
 
+@Composable
+fun CharacterRow(
+    modifier: Modifier = Modifier,
+    name: String,
+    date: String,
+    level: Int,
+    color: Color,
+    removeCharacter: () -> Unit = {}
+) {
+    BaseRow(
+        modifier = modifier,
+        color = color,
+        title = stringResource(id = R.string.characterName) + ": $name",
+        subtitle = stringResource(id = R.string.dateTitle) + ": $date",
+        amount = stringResource(id = R.string.characterLevel) + ": ${level.toString()}",
+        removeCharacter = removeCharacter
+    )
+}
+
+/**
+ * Textfield row, can only set numbers
+ */
 @Composable
 fun baseSimpleIntegersField(
     title: String,
@@ -227,7 +247,9 @@ fun baseSimpleIntegersField(
     return text.text
 }
 
-
+/**
+ * Textfield standard  row
+ */
 @Composable
 fun baseSimpleTextField(
     title: String,
@@ -264,7 +286,10 @@ fun baseSimpleTextField(
 
 }
 
-
+/**
+ *Textfield that can be clicked without calling the keyboard. If clicked use the clickAction function
+ *instead of invoking keyboard. Can have or not an icon or a switch to the right
+ */
 @Composable
 fun ClickableSimpleTextField(
     title: String,
@@ -277,11 +302,11 @@ fun ClickableSimpleTextField(
 
 
     ) {
-    var textfieldSize by remember { mutableStateOf(Size.Zero) }
+    var textFieldSize by remember { mutableStateOf(Size.Zero) }
     var selectedText by remember { mutableStateOf("") }
     var switchValue by remember { mutableStateOf(false) }
 
-
+    //applies click action instead of call the keyboard
     val interactionSource = remember {
         object : MutableInteractionSource {
             override val interactions = MutableSharedFlow<Interaction>(
@@ -292,7 +317,8 @@ fun ClickableSimpleTextField(
             override suspend fun emit(interaction: Interaction) {
                 if (interaction is PressInteraction.Release) {
                     clickAction()
-                    switchValue = !switchValue                }
+                    switchValue = !switchValue
+                }
 
                 interactions.emit(interaction)
             }
@@ -302,8 +328,6 @@ fun ClickableSimpleTextField(
             }
         }
     }
-
-
 
     Row(
         modifier = Modifier
@@ -316,7 +340,7 @@ fun ClickableSimpleTextField(
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-
+        //removes the call to keyboard
         CompositionLocalProvider(LocalTextInputService provides null) {
 
             OutlinedTextField(interactionSource = interactionSource, value = text, onValueChange = {
@@ -330,12 +354,12 @@ fun ClickableSimpleTextField(
                     })
                     .onGloballyPositioned { coordinates ->
                         //This value is used to assign to the DropDown the same width
-                        textfieldSize = coordinates.size.toSize()
+                        textFieldSize = coordinates.size.toSize()
                     },
-readOnly = true,
+                readOnly = true,
                 trailingIcon = {
                     icon?.let {
-                        Icon(icon, "contentDescription",
+                        Icon(icon, "rowIcon",
                             Modifier.clickable { clickAction() })
                     }
                     if (switch) {
@@ -355,13 +379,13 @@ readOnly = true,
     AppUiDivider()
 }
 
-
+/**
+*Basic switch of the app. Uses ClickableSimpleTextField, but with this one will be easier to call.
+*/
 @Composable
 fun baseSwitch(title: String): Boolean {
 
     var selectedBoolean by remember { mutableStateOf(false) }
-
-
 
     Column() {
 
@@ -374,16 +398,13 @@ fun baseSwitch(title: String): Boolean {
             switch = true,
             modifier = Modifier
         )
-
-
         AppUiDivider()
-
-
     }
     return selectedBoolean
 }
-
-
+/**
+ * Basic confirmationDialog of the app. With a title, a subtitle and confirmation and dismiss actions.
+ */
 @Composable
 fun ConfirmationDialog(
     title: String,
@@ -412,28 +433,18 @@ fun ConfirmationDialog(
         )
     }
 }
-
-
 /**
- * A vertical colored line that is used in a [BaseRow] to differentiate accounts.
+ * Basic rows divider of the app
  */
-@Composable
-private fun AccountIndicator(color: Color, modifier: Modifier = Modifier) {
-    Spacer(
-        modifier
-            .size(4.dp, 36.dp)
-            .background(color = color)
-    )
-}
-
 @Composable
 fun AppUiDivider(modifier: Modifier = Modifier) {
     Divider(color = MaterialTheme.colors.background, thickness = 1.dp, modifier = modifier)
 }
 
-
-
-
+/**
+ * Same as cliclableSimpleTextField, but when used, calls a confirmationDialog to apply or not the custom action
+ * Has an arrow to the right, up or down depending to if the row is selected or not
+ */
 @Composable
 fun ClickableSimpleTextFieldWithConfirmation(
     title: String,

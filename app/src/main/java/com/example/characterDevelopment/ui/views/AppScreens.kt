@@ -9,10 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.vector.ImageVector
-
-/**
- * Contract for information needed on every Rally navigation destination
- */
 interface AppScreens {
     val icon: ImageVector
     val route: String
@@ -21,7 +17,7 @@ interface AppScreens {
 }
 
 /**
- * Rally app navigation destinations
+ *app navigation destinations
  */
 object MainCharacter : AppScreens {
     override val icon = Icons.Filled.Accessibility
@@ -43,7 +39,7 @@ object CharactersList: AppScreens {
 
 }
 
-val addCharacterRoute = "Add"
+const val addCharacterRoute = "Add"
 
-// Screens to be displayed in the top RallyTabRow
+// Screens to be displayed in the top TabRow
 val appTabRowScreen = listOf(MainCharacter, CharactersList, AppSettings)

@@ -30,7 +30,7 @@ fun CharacterInformationBody(
     rows: @Composable () -> Unit
 
 ) {
-//calculate the completed % of the circle
+    //calculate the completed % of the circle
     val value = circleValue / circleMaxNumber
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
         Box(Modifier.padding(16.dp)) {
@@ -43,14 +43,14 @@ fun CharacterInformationBody(
                     .fillMaxWidth()
             )
             Column(modifier = Modifier.align(Alignment.Center)) {
-//The title of the circle
+                //The title of the circle
                 Text(
                     text = circleLabel,
                     style = MaterialTheme.typography.h5,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
 
                 )
-//The numerical value that represents the circle
+                //The numerical value that represents the circle
                 Text(
                     text = circleValue.toString(),
                     style = MaterialTheme.typography.h2,

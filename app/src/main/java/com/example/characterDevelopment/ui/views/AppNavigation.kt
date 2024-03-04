@@ -29,7 +29,6 @@ import com.example.characterDevelopment.ui.theme.AppTheme
 @Composable
 fun AppNavigation() {
 
-
     val characterVm: CharacterCreatorViewModel = hiltViewModel()
     val settingsVm: SettingsViewModel = hiltViewModel()
 
@@ -38,13 +37,15 @@ fun AppNavigation() {
     }
 
     val characters by characterVm.listCharacters.observeAsState()
+
+    //This checks if the list of profiles is updated
     val response by characterVm.firstCoroutineCompleted.observeAsState()
 
     val configuration: SettingsDomainModel? by settingsVm.currentConfiguration
 
 
 
-
+    //if the configuration has a theme selected use it, if not use dark theme by default
     AppTheme(configuration?.theme ?: Theme.DARK) {
 
         if (response == true) {
@@ -103,6 +104,7 @@ fun AppNavigation() {
     }
 }
 
+//Update all strings according to the new language selected.
 @Composable
 fun UpdateTextsLanguage() {
     Health.UNHEALTHY.description = stringResource(id = R.string.unhealthLabel)
@@ -134,6 +136,4 @@ fun UpdateTextsLanguage() {
     AppSettings.screenTitle = stringResource(id = R.string.settingsScreenTitle)
     CharactersList.screenTitle = stringResource(id = R.string.charactersListScreenTitle)
 }
-
-var language = "ca"
 

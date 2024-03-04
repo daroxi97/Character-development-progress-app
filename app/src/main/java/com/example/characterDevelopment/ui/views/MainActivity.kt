@@ -12,19 +12,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-                AppNavigation()
-
-
+            AppNavigation()
         }
     }
-
-/*
-override fun attachBaseContext(newBase: Context) {
-    super.attachBaseContext(ContextWrapper(newBase.setAppLocale(appLanguage.value)))
-}
-
- */
-
-
 }

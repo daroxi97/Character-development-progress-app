@@ -55,6 +55,9 @@ private const val TAB_FADE_IN_ANIMATION_DURATION = 300
 private const val TAB_FADE_IN_ANIMATION_DELAY = 100
 private const val TAB_FADE_OUT_ANIMATION_DURATION = 200
 
+/**
+ * Custom tabs of the app. Requires all the tabs that we want to set, the action when pressed one and the current selected tab screen
+ */
 @Composable
 fun AppTabsRow(
     allScreens: List<AppScreens>,

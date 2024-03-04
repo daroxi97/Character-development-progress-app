@@ -66,6 +66,9 @@ private fun BasicDatePickerDialog(
 
 }
 
+/**
+ * Row that if is pressed calls a datePickerDialog to set a date
+ */
 @Composable
 fun baseClickableRowDatePickerDialog(): String {
 
