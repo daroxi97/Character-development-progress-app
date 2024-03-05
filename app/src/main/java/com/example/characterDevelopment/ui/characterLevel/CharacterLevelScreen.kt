@@ -42,11 +42,13 @@ fun CharacterScreen(
                         .padding(16.dp)
                         .size(48.dp)
                         .clickable { navController.popBackStack() })
+
             }
         }
 
     ) { innerPadding ->
         Box(Modifier.padding(innerPadding)) {
+
             CharacterScreenBody(mvvm = mvvm, !backArrow)
         }
     }
