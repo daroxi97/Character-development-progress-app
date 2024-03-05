@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,14 +46,14 @@ fun CharacterInformationBody(
                 //The title of the circle
                 Text(
                     text = circleLabel,
-                    style = MaterialTheme.typography.h5,
+                    style = MaterialTheme.typography.headlineMedium,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
 
                 )
                 //The numerical value that represents the circle
                 Text(
                     text = circleValue.toString(),
-                    style = MaterialTheme.typography.h2,
+                    style = MaterialTheme.typography.displayMedium,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             }

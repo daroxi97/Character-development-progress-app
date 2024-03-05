@@ -46,7 +46,7 @@ class CharacterCreatorViewModel @Inject constructor(
 
     private fun updateListOfCharacters() {
         //Update the list of profiles with the information of the database.
-        viewModelScope.launch() {
+        viewModelScope.launch {
             val configuration = getSettingsUseCase()
             val characters = getCharactersUseCase(configuration.order)
             _listCharacters.value = characters
@@ -107,7 +107,7 @@ class CharacterCreatorViewModel @Inject constructor(
 
     fun reorderCharacterList(orderDescription: String) {
         //Reorder the actual list of profiles. The configuration save of the new reorder relies on configuration viewModel.
-        viewModelScope.launch() {
+        viewModelScope.launch {
             val orderPattern = getOrderFromDescription(orderDescription)
             val characters = getCharactersUseCase(orderPattern)
             _listCharacters.value = characters

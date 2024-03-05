@@ -11,13 +11,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,7 +46,7 @@ fun dropDownMenuRow(
         Icons.Filled.KeyboardArrowDown
 
 
-    Column() {
+    Column {
 
         ClickableSimpleTextField(
             title = title,
@@ -68,9 +68,7 @@ fun dropDownMenuRow(
                 DropdownMenuItem(onClick = {
                     selectedText = label
                     expanded = false
-                }) {
-                    Text(text = label)
-                }
+                }, text = { Text(text = label) })
             }
         }
         AppUiDivider()
@@ -80,6 +78,7 @@ fun dropDownMenuRow(
     return selectedText
 
 }
+
 /**
  * Same as dropDownMenuRow, but this time will have a confirmation dialog.
  */
@@ -107,7 +106,7 @@ fun dropDownMenuRowWithConfirmation(
         Icons.Filled.KeyboardArrowDown
 
 
-    Column() {
+    Column {
 
         ClickableSimpleTextField(
             title = title,
@@ -141,9 +140,7 @@ fun dropDownMenuRowWithConfirmation(
                     confirmDialog = true
                     savedLabel = label
                     expanded = false
-                }) {
-                    Text(text = label)
-                }
+                }, text = { Text(text = label) })
             }
         }
         AppUiDivider()
@@ -153,6 +150,7 @@ fun dropDownMenuRowWithConfirmation(
     return selectedText
 
 }
+
 /**
  * An image that if is pressed show a dropdown with different options
  */
@@ -198,9 +196,9 @@ fun dropDownMenuIcon(
                         selectedText = label
                         expanded = false
                         clickAction(selectedText)
-                    }) {
+                    }, text = {
                         Text(text = label)
-                    }
+                    })
 
                 }
             }

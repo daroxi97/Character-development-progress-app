@@ -17,20 +17,19 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Switch
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Switch
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -78,12 +77,12 @@ private fun BaseSimpleRow(
         val typography = MaterialTheme.typography
 
         Spacer(Modifier.width(12.dp))
-        Text(text = title, style = typography.body1)
+        Text(text = title, style = typography.titleSmall)
 
         Spacer(Modifier.weight(1f))
         Text(
             text = content,
-            style = typography.h6,
+            style = typography.headlineSmall,
             modifier = Modifier.align(Alignment.CenterVertically)
         )
 
@@ -139,12 +138,12 @@ private fun BaseRow(
         Column(Modifier) {
             Text(
                 text = title,
-                style = typography.body1,
+                style = typography.titleSmall,
                 modifier = Modifier.width(180.dp),
                 maxLines = 2
             )
-            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                Text(text = subtitle, style = typography.subtitle1)
+            CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurfaceVariant) {
+                Text(text = subtitle, style = typography.titleLarge)
             }
         }
         Spacer(Modifier.weight(1f))
@@ -154,13 +153,13 @@ private fun BaseRow(
 
             Text(
                 text = amount,
-                style = typography.body1,
+                style = typography.titleSmall,
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
         }
         Spacer(Modifier.width(16.dp))
 
-        CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+        CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurfaceVariant) {
             Icon(
                 imageVector = Icons.Filled.Delete,
                 contentDescription = "Delete character button",
@@ -202,7 +201,7 @@ fun CharacterRow(
         color = color,
         title = stringResource(id = R.string.characterName) + ": $name",
         subtitle = stringResource(id = R.string.dateTitle) + ": $date",
-        amount = stringResource(id = R.string.characterLevel) + ": ${level.toString()}",
+        amount = stringResource(id = R.string.characterLevel) + ": $level",
         removeCharacter = removeCharacter
     )
 }
@@ -387,7 +386,7 @@ fun baseSwitch(title: String): Boolean {
 
     var selectedBoolean by remember { mutableStateOf(false) }
 
-    Column() {
+    Column {
 
         ClickableSimpleTextField(
             title = title,
@@ -438,7 +437,7 @@ fun ConfirmationDialog(
  */
 @Composable
 fun AppUiDivider(modifier: Modifier = Modifier) {
-    Divider(color = MaterialTheme.colors.background, thickness = 1.dp, modifier = modifier)
+    HorizontalDivider(color = MaterialTheme.colorScheme.background, thickness = 1.dp, modifier = modifier)
 }
 
 /**
@@ -464,7 +463,7 @@ fun ClickableSimpleTextFieldWithConfirmation(
         Icons.Filled.KeyboardArrowDown
 
 
-    Column() {
+    Column {
 
         ClickableSimpleTextField(
             title = title,

@@ -1,7 +1,7 @@
 package com.example.characterDevelopment.ui.theme
 
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
 val Green500 = Color(0xFF1EB980)
@@ -13,7 +13,7 @@ val deepGreen = Color (57, 91, 80)
 val textBrown = Color (80, 36, 25)
 
 
-val DarkColorPalette = darkColors(
+val DarkColorPalette = darkColorScheme(
     primary = Green500,
     surface = DarkBlue900,
     onSurface = Color.White,
@@ -21,7 +21,7 @@ val DarkColorPalette = darkColors(
     onBackground = Color.White
 )
 
-val ColorPalette =  lightColors(
+val ColorPalette =  lightColorScheme(
     primary = deepGreen,
     surface = tabGreen,
     onSurface = textBrown,

@@ -8,6 +8,7 @@ import com.example.characterDevelopment.domain.UseCases.CharacterLevelSetUseCase
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 data class CharacterDomainModel(
     var name: String,
@@ -49,11 +50,16 @@ fun CharacterEntity.toDomain(): CharacterDomainModel {
 private fun reformatDateToDomain(dateString: String): String {
     return try {
         //modify the format, to be more visually appealing for the UI
-        val initialFormat = SimpleDateFormat("yyyy-MM-dd")
-        val date: Date = initialFormat.parse(dateString)
+        val initialFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val date: Date? = initialFormat.parse(dateString)
+        val desiredFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
-        val desiredFormat = SimpleDateFormat("dd/MM/yyyy")
-        desiredFormat.format(date)
+        if (date != null) {
+            desiredFormat.format(date)
+        }
+        else{
+            dateString
+        }
     } catch (e: ParseException) {
         e.printStackTrace()
         dateString
