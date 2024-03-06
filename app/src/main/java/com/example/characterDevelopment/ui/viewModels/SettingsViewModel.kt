@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.characterDevelopment.data.database.entities.AppLanguage
 import com.example.characterDevelopment.data.database.entities.Theme
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
-import com.example.characterDevelopment.domain.UseCases.ChangeLanguageUseCase
-import com.example.characterDevelopment.domain.UseCases.GetSettingsUseCase
-import com.example.characterDevelopment.domain.UseCases.SaveSettingsUseCase
+import com.example.characterDevelopment.domain.models.SettingsDomainModel
+import com.example.characterDevelopment.domain.useCases.ChangeLanguageUseCase
+import com.example.characterDevelopment.domain.useCases.GetSettingsUseCase
+import com.example.characterDevelopment.domain.useCases.SaveSettingsUseCase
 import com.example.characterDevelopment.utils.getOrderFromDescription
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

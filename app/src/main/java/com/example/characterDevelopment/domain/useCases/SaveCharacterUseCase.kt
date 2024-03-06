@@ -1,16 +1,15 @@
-package com.example.characterDevelopment.domain.UseCases
+package com.example.characterDevelopment.domain.useCases
 
-import android.util.Log
 import com.example.characterDevelopment.data.database.entities.toDatabase
 import com.example.characterDevelopment.data.repository.CharactersRepositoryImpl
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
 import javax.inject.Inject
 
 class SaveCharacterUseCase @Inject constructor(private val repository: CharactersRepositoryImpl) {
     suspend operator fun invoke(character: CharacterDomainModel) {
 
 
-        var characters = repository.getAllCharactersFromDatabase().toMutableList()
+        val characters = repository.getAllCharactersFromDatabase().toMutableList()
 
         //If user created a new main profile, delete the last one state as main profile
         if (character.mainCharacter) {

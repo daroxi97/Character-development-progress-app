@@ -1,10 +1,10 @@
-package com.example.characterDevelopment.domain.UseCases
+package com.example.characterDevelopment.domain.useCases
 
 import com.example.characterDevelopment.data.database.entities.Health
 import com.example.characterDevelopment.data.database.entities.Mood
 import com.example.characterDevelopment.data.database.entities.PhysicalCondition
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
-import com.example.characterDevelopment.domain.Models.ICharacterLevelSetUseCase
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
+import com.example.characterDevelopment.domain.models.ICharacterLevelSetUseCase
 import kotlin.math.pow
 
 

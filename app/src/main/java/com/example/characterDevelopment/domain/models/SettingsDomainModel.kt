@@ -1,4 +1,4 @@
-package com.example.characterDevelopment.domain.Models
+package com.example.characterDevelopment.domain.models
 
 import com.example.characterDevelopment.data.database.entities.AppLanguage
 import com.example.characterDevelopment.data.database.entities.SettingsEntity

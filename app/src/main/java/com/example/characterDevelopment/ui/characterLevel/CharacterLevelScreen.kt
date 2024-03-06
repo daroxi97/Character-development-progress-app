@@ -19,7 +19,7 @@ import androidx.navigation.NavController
 import com.example.characterDevelopment.R
 import com.example.characterDevelopment.ui.components.CharacterInformationBody
 import com.example.characterDevelopment.ui.components.SimpleRow
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
 import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
 import java.text.NumberFormat
 import java.util.Locale

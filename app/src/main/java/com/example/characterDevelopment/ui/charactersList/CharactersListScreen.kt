@@ -34,7 +34,7 @@ import com.example.characterDevelopment.ui.components.ConfirmationDialog
 import com.example.characterDevelopment.ui.components.dropDownMenuIcon
 import com.example.characterDevelopment.R
 import com.example.characterDevelopment.data.database.entities.orders
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
 import com.example.characterDevelopment.ui.characterLevel.CharacterScreen
 import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
 import com.example.characterDevelopment.ui.viewModels.SettingsViewModel
@@ -140,8 +140,8 @@ fun CharacterListScreenContent(
                     charactersViewModel.reorderCharacterList(it)
                 }
                 //List of created character profiles
-                characters?.let {
-                    it.forEach { character ->
+                characters?.let { profile ->
+                    profile.forEach { character ->
                         CharacterRow(
                             Modifier.clickable {
                                 //if click a profile go to more info screen
@@ -168,7 +168,7 @@ fun CharacterListScreenContent(
                             },
                             {
                                 //if press confirm
-                                deletedCharacter?.let { it ->
+                                deletedCharacter?.let {
                                     charactersViewModel.removeCharacter(it.id)
                                 }
                                 confirmDialog = false

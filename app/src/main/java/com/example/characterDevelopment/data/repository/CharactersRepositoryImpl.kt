@@ -4,8 +4,8 @@ import android.util.Log
 import com.example.characterDevelopment.data.database.dao.CharactersDao
 import com.example.characterDevelopment.data.database.entities.CharacterEntity
 import com.example.characterDevelopment.data.database.entities.Order
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
-import com.example.characterDevelopment.domain.Models.toDomain
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
+import com.example.characterDevelopment.domain.models.toDomain
 import javax.inject.Inject
 
 class CharactersRepositoryImpl @Inject constructor(private val charactersDao: CharactersDao) :

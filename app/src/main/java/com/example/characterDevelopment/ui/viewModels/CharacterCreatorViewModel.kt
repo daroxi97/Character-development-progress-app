@@ -7,12 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.characterDevelopment.data.database.entities.Health
 import com.example.characterDevelopment.data.database.entities.Mood
 import com.example.characterDevelopment.data.database.entities.PhysicalCondition
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
-import com.example.characterDevelopment.domain.UseCases.DeleteAllCharactersUseCase
-import com.example.characterDevelopment.domain.UseCases.DeleteCharacterUseCase
-import com.example.characterDevelopment.domain.UseCases.GetCharactersUseCase
-import com.example.characterDevelopment.domain.UseCases.GetSettingsUseCase
-import com.example.characterDevelopment.domain.UseCases.SaveCharacterUseCase
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
+import com.example.characterDevelopment.domain.useCases.DeleteAllCharactersUseCase
+import com.example.characterDevelopment.domain.useCases.DeleteCharacterUseCase
+import com.example.characterDevelopment.domain.useCases.GetCharactersUseCase
+import com.example.characterDevelopment.domain.useCases.GetSettingsUseCase
+import com.example.characterDevelopment.domain.useCases.SaveCharacterUseCase
 import com.example.characterDevelopment.utils.getOrderFromDescription
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -37,7 +37,7 @@ class CharacterCreatorViewModel @Inject constructor(
     val currentCharacter: LiveData<CharacterDomainModel> get() = _currentCharacter
 
     //I use this variable to make sure the list of profiles is updated before letting the user trying to use them
-    private val _firstCoroutineCompleted = MutableLiveData<Boolean>(false)
+    private val _firstCoroutineCompleted = MutableLiveData(false)
     val firstCoroutineCompleted: LiveData<Boolean> get() = _firstCoroutineCompleted
 
     init {

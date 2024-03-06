@@ -20,7 +20,7 @@ import com.example.characterDevelopment.data.database.entities.AppLanguage
 import com.example.characterDevelopment.data.database.entities.Theme
 import com.example.characterDevelopment.data.database.entities.languages
 import com.example.characterDevelopment.data.database.entities.themes
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
+import com.example.characterDevelopment.domain.models.SettingsDomainModel
 import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
 import com.example.characterDevelopment.ui.viewModels.SettingsViewModel
 import com.example.characterDevelopment.ui.views.UpdateTextsLanguage

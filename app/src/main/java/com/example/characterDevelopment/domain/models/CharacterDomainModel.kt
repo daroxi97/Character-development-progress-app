@@ -1,10 +1,10 @@
-package com.example.characterDevelopment.domain.Models
+package com.example.characterDevelopment.domain.models
 
 import com.example.characterDevelopment.data.database.entities.CharacterEntity
 import com.example.characterDevelopment.data.database.entities.Health
 import com.example.characterDevelopment.data.database.entities.Mood
 import com.example.characterDevelopment.data.database.entities.PhysicalCondition
-import com.example.characterDevelopment.domain.UseCases.CharacterLevelSetUseCase
+import com.example.characterDevelopment.domain.useCases.CharacterLevelSetUseCase
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date

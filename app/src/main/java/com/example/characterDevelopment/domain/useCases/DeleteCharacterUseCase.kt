@@ -1,4 +1,4 @@
-package com.example.characterDevelopment.domain.UseCases
+package com.example.characterDevelopment.domain.useCases
 
 import com.example.characterDevelopment.data.repository.CharactersRepositoryImpl
 import javax.inject.Inject
@@ -6,7 +6,7 @@ import javax.inject.Inject
 class DeleteCharacterUseCase @Inject constructor(private val repository: CharactersRepositoryImpl) {
     suspend operator fun invoke(characterId: Int) {
 //Check if the user removed the main profile from the database
-        var isDeletedMainCharacter =
+        val isDeletedMainCharacter =
             repository.getCharacterWithId(characterId)?.mainCharacter ?: false
 
         repository.deleteCharacter(characterId)
@@ -15,7 +15,7 @@ class DeleteCharacterUseCase @Inject constructor(private val repository: Charact
         /profile as placeholder until the user set another one
          */
         if (isDeletedMainCharacter) {
-            var characters = repository.getAllCharactersFromDatabase().toMutableList()
+            val characters = repository.getAllCharactersFromDatabase().toMutableList()
             if (characters.isNotEmpty()) {
                 repository.updateCharacter(characters[0].id, true)
             }

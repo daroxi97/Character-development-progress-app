@@ -19,7 +19,7 @@ import com.example.characterDevelopment.data.database.entities.Health
 import com.example.characterDevelopment.data.database.entities.Mood
 import com.example.characterDevelopment.data.database.entities.PhysicalCondition
 import com.example.characterDevelopment.data.database.entities.Order
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
+import com.example.characterDevelopment.domain.models.SettingsDomainModel
 import com.example.characterDevelopment.ui.characterLevel.CharacterScreen
 import com.example.characterDevelopment.ui.charactersList.CharacterListScreen
 import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
