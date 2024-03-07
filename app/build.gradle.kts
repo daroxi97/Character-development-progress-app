@@ -11,14 +11,20 @@ plugins {
 android {
     signingConfigs {
         create("release") {
-            val keystorePropertiesFile = rootProject.file("keystore.properties")
-            val keystoreProperties = Properties()
-            keystoreProperties.load(keystorePropertiesFile.inputStream())
+            try {
+                val keystorePropertiesFile = rootProject.file("keystore.properties")
+                val keystoreProperties = Properties()
+                keystoreProperties.load(keystorePropertiesFile.inputStream())
 
-            storeFile = File(keystoreProperties.getProperty("storeFile"))
-            keyAlias = keystoreProperties.getProperty("keyAlias")
-            storePassword = keystoreProperties.getProperty("storePassword")
-            keyPassword = keystoreProperties.getProperty("keyPassword")
+                storeFile = File(keystoreProperties.getProperty("storeFile"))
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+            catch (e: java.io.FileNotFoundException) {
+                // Handle the case where keystore.properties file is not found
+                println("keystore.properties file not found. Please create the file.")
+            }
         }
     }
     namespace = "com.example.characterDevelopment"
