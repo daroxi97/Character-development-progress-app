@@ -1,20 +1,24 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-
 }
 
 
 android {
     signingConfigs {
         create("release") {
-            storeFile =
-                file("C:\\Users\\dan_r\\AndroidStudioProjects\\CharacterDevelopment\\characterdevelopmentkey.keystore")
-            keyAlias = "characterdevelopmentalias"
-            storePassword = "hoops0410"
-            keyPassword = "hoops0410"
+            val keystorePropertiesFile = rootProject.file("keystore.properties")
+            val keystoreProperties = Properties()
+            keystoreProperties.load(keystorePropertiesFile.inputStream())
+
+            storeFile = File(keystoreProperties.getProperty("storeFile"))
+            keyAlias = keystoreProperties.getProperty("keyAlias")
+            storePassword = keystoreProperties.getProperty("storePassword")
+            keyPassword = keystoreProperties.getProperty("keyPassword")
         }
     }
     namespace = "com.example.characterDevelopment"
@@ -68,7 +72,7 @@ android {
 }
 
 dependencies {
-    implementation("com.google.dagger:hilt-android:2.48")
+    implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -78,6 +82,15 @@ dependencies {
     implementation ("androidx.compose.material3:material3:1.3.0-alpha01")
     implementation ("androidx.compose.material:material-icons-extended")
     implementation("androidx.compose.runtime:runtime-livedata")
+
+
+    /*implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+     */
 
     debugImplementation ("androidx.compose.ui:ui-tooling")
     testImplementation("junit:junit:4.13.2")
