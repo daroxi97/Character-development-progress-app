@@ -1,4 +1,4 @@
-package com.example.characterDevelopment.ui.ViewModels
+package com.example.characterDevelopment.ui.viewModels
 
 import android.content.Context
 import androidx.compose.runtime.MutableState
@@ -6,12 +6,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.characterDevelopment.data.database.entities.AppLanguage
-import com.example.characterDevelopment.data.database.entities.Order
 import com.example.characterDevelopment.data.database.entities.Theme
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
-import com.example.characterDevelopment.domain.UseCases.ChangeLanguageUseCase
-import com.example.characterDevelopment.domain.UseCases.GetSettingsUseCase
-import com.example.characterDevelopment.domain.UseCases.SaveSettingsUseCase
+import com.example.characterDevelopment.domain.models.SettingsDomainModel
+import com.example.characterDevelopment.domain.useCases.ChangeLanguageUseCase
+import com.example.characterDevelopment.domain.useCases.GetSettingsUseCase
+import com.example.characterDevelopment.domain.useCases.SaveSettingsUseCase
 import com.example.characterDevelopment.utils.getOrderFromDescription
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -66,7 +65,7 @@ class SettingsViewModel @Inject constructor(
 
     private fun changeLanguage(context: Context, language: String) {
         //Change the language of the app
-        var changeLanguage = ChangeLanguageUseCase(context, language)
+        val changeLanguage = ChangeLanguageUseCase(context, language)
         changeLanguage()
     }
 
@@ -87,7 +86,7 @@ class SettingsViewModel @Inject constructor(
 
 
     fun saveOrder(orderDescription: String) {
-        var orderPattern = getOrderFromDescription(orderDescription)
+        val orderPattern = getOrderFromDescription(orderDescription)
         viewModelScope.launch {
             //Only update if the new order is different from the actual one
             if (currentConfiguration.value?.order != orderPattern) {

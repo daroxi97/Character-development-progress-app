@@ -2,7 +2,7 @@ package com.example.characterDevelopment.data.repository
 
 import com.example.characterDevelopment.data.database.entities.CharacterEntity
 import com.example.characterDevelopment.data.database.entities.Order
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
 
 interface ICharactersRepository {
     suspend fun getAllCharactersFromDatabase(orderPattern: Order = Order.NAME): List<CharacterDomainModel>

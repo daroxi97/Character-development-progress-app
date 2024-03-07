@@ -1,4 +1,4 @@
-package com.example.characterDevelopment.ui.Views
+package com.example.characterDevelopment.ui.views
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
@@ -12,7 +12,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.characterDevelopment.ui.CharactersList.characterListScreen
 import com.example.characterDevelopment.ui.addCharacter.AddCharacterScreen
 import com.example.characterDevelopment.R
 import com.example.characterDevelopment.data.database.entities.Theme
@@ -20,31 +19,33 @@ import com.example.characterDevelopment.data.database.entities.Health
 import com.example.characterDevelopment.data.database.entities.Mood
 import com.example.characterDevelopment.data.database.entities.PhysicalCondition
 import com.example.characterDevelopment.data.database.entities.Order
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
-import com.example.characterDevelopment.ui.CharacterLevel.CharacterScreen
-import com.example.characterDevelopment.ui.ViewModels.CharacterCreatorViewModel
-import com.example.characterDevelopment.ui.ViewModels.SettingsViewModel
+import com.example.characterDevelopment.domain.models.SettingsDomainModel
+import com.example.characterDevelopment.ui.characterLevel.CharacterScreen
+import com.example.characterDevelopment.ui.charactersList.CharacterListScreen
+import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
+import com.example.characterDevelopment.ui.viewModels.SettingsViewModel
 import com.example.characterDevelopment.ui.theme.AppTheme
 
 @Composable
 fun AppNavigation() {
 
-
-    var characterVm: CharacterCreatorViewModel = hiltViewModel()
-    var settingsVm: SettingsViewModel = hiltViewModel()
+    val characterVm: CharacterCreatorViewModel = hiltViewModel()
+    val settingsVm: SettingsViewModel = hiltViewModel()
 
     settingsVm.currentConfiguration.value?.language?.value?.let {
         settingsVm.initialSetLanguage(LocalContext.current)
     }
 
     val characters by characterVm.listCharacters.observeAsState()
+
+    //This checks if the list of profiles is updated
     val response by characterVm.firstCoroutineCompleted.observeAsState()
 
     val configuration: SettingsDomainModel? by settingsVm.currentConfiguration
 
 
 
-
+    //if the configuration has a theme selected use it, if not use dark theme by default
     AppTheme(configuration?.theme ?: Theme.DARK) {
 
         if (response == true) {
@@ -80,7 +81,7 @@ fun AppNavigation() {
                         AnimatedContentTransitionScope.SlideDirection.End, tween(500)
                     )
                 }) {
-                    characterListScreen(navController, characterVm, settingsVm)
+                    CharacterListScreen(navController, characterVm, settingsVm)
                 }
 
                 composable(route = addCharacterRoute, enterTransition = {
@@ -103,8 +104,9 @@ fun AppNavigation() {
     }
 }
 
+//Update all strings according to the new language selected.
 @Composable
-fun updateTextsLanguage() {
+fun UpdateTextsLanguage() {
     Health.UNHEALTHY.description = stringResource(id = R.string.unhealthLabel)
     Health.HEALTHY.description = stringResource(id = R.string.healthyLabel)
     Health.NORMAL.description = stringResource(id = R.string.normalLabel)
@@ -134,6 +136,4 @@ fun updateTextsLanguage() {
     AppSettings.screenTitle = stringResource(id = R.string.settingsScreenTitle)
     CharactersList.screenTitle = stringResource(id = R.string.charactersListScreenTitle)
 }
-
-var language = "ca"
 

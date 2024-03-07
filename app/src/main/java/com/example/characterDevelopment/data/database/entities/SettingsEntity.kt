@@ -3,11 +3,11 @@ package com.example.characterDevelopment.data.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
+import com.example.characterDevelopment.domain.models.SettingsDomainModel
 
 @Entity(tableName = "settings_table")
 data class SettingsEntity(
-    @PrimaryKey()
+    @PrimaryKey
     @ColumnInfo(name = "id") var id: Int = 1,
     @ColumnInfo(name = "theme") var theme: Theme = Theme.DARK,
     @ColumnInfo(name = "language") var language: AppLanguage = AppLanguage.DEFAULT,
@@ -22,8 +22,9 @@ fun SettingsDomainModel.toDatabase() =
         order = order
     )
 
-//The description will be used in the views for the user
-//The value will be used as a key to change the language
+/*The description will be used in the views for the user
+  The value will be used as a key to change the language
+ */
 enum class AppLanguage(var description: String, val value: String) {
     DEFAULT("", ""), CATALAN("Català", "ca"), SPANISH("Español", "es"), ENGLISH("English", "en")
 }
@@ -38,7 +39,7 @@ enum class Order(var description: String) {
 }
 
 //Create the list of languages this way so in case I add more moods later, it will get updated automatically in the rest of the app.
-var languages: List<String> = emptyList()
+val languages: List<String>
     get() {
         return mutableListOf<String>().apply {
             for (languageValue in AppLanguage.values()) {
@@ -49,7 +50,7 @@ var languages: List<String> = emptyList()
         }
     }
 
-var themes: List<String> = emptyList()
+val themes: List<String>
     get() {
         return mutableListOf<String>().apply {
             for (themeValue in Theme.values()) {
@@ -58,7 +59,7 @@ var themes: List<String> = emptyList()
         }
     }
 
-var orders: List<String> = emptyList()
+val orders: List<String>
     get() {
         return mutableListOf<String>().apply {
             for (orderValue in Order.values()) {

@@ -14,17 +14,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.compose.rally.ui.components.dropDownMenuRowWithConfirmation
+import com.example.characterDevelopment.ui.components.dropDownMenuRowWithConfirmation
 import com.example.characterDevelopment.R
 import com.example.characterDevelopment.data.database.entities.AppLanguage
 import com.example.characterDevelopment.data.database.entities.Theme
 import com.example.characterDevelopment.data.database.entities.languages
 import com.example.characterDevelopment.data.database.entities.themes
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
-import com.example.characterDevelopment.ui.ViewModels.CharacterCreatorViewModel
-import com.example.characterDevelopment.ui.ViewModels.SettingsViewModel
-import com.example.characterDevelopment.ui.Views.updateTextsLanguage
-import com.example.compose.rally.ui.components.ClickableSimpleTextFieldWithConfirmation
+import com.example.characterDevelopment.domain.models.SettingsDomainModel
+import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
+import com.example.characterDevelopment.ui.viewModels.SettingsViewModel
+import com.example.characterDevelopment.ui.views.UpdateTextsLanguage
+import com.example.characterDevelopment.ui.components.ClickableSimpleTextFieldWithConfirmation
 
 @Composable
 fun ConfigurationScreen(charactersVm: CharacterCreatorViewModel, settingsVm: SettingsViewModel) {
@@ -99,7 +99,7 @@ fun ConfigurationScreen(charactersVm: CharacterCreatorViewModel, settingsVm: Set
             changeLanguage = false
             settingsVm.updateConfiguration = true
             settingsVm.saveLanguage(LocalContext.current, language)
-            updateTextsLanguage()
+            UpdateTextsLanguage()
         }
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.compose.rally.ui.components
+package com.example.characterDevelopment.ui.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
@@ -30,11 +30,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -46,14 +46,23 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.characterDevelopment.ui.Views.AppDestinations
-import java.util.Locale
+import com.example.characterDevelopment.ui.views.AppScreens
 
+
+val TabHeight = 70.dp
+private const val INACTIVE_TAB_OPACITY = 0.20f
+private const val TAB_FADE_IN_ANIMATION_DURATION = 300
+private const val TAB_FADE_IN_ANIMATION_DELAY = 100
+private const val TAB_FADE_OUT_ANIMATION_DURATION = 200
+
+/**
+ * Custom tabs of the app. Requires all the tabs that we want to set, the action when pressed one and the current selected tab screen
+ */
 @Composable
 fun AppTabsRow(
-    allScreens: List<AppDestinations>,
-    onTabSelected: (AppDestinations) -> Unit,
-    currentScreen: AppDestinations
+    allScreens: List<AppScreens>,
+    onTabSelected: (AppScreens) -> Unit,
+    currentScreen: AppScreens
 ) {
     Surface(
         Modifier
@@ -62,10 +71,10 @@ fun AppTabsRow(
     ) {
         Row(
             Modifier.selectableGroup(),
-            horizontalArrangement = Arrangement.Center // Centra horizontalmente los elementos en el Row
+            horizontalArrangement = Arrangement.Center
         ) {
             allScreens.forEach { screen ->
-                appTab(
+                AppTab(
                     text = screen.screenTitle,
                     icon = screen.icon,
                     onSelected = { onTabSelected(screen) },
@@ -77,24 +86,25 @@ fun AppTabsRow(
 }
 
 @Composable
-private fun appTab(
+private fun AppTab(
     text: String,
     icon: ImageVector,
     onSelected: () -> Unit,
     selected: Boolean
 ) {
-    val color = MaterialTheme.colors.onSurface
-    val durationMillis = if (selected) TabFadeInAnimationDuration else TabFadeOutAnimationDuration
+    val color = MaterialTheme.colorScheme.onSurface
+    val durationMillis =
+        if (selected) TAB_FADE_IN_ANIMATION_DURATION else TAB_FADE_OUT_ANIMATION_DURATION
     val animSpec = remember {
         tween<Color>(
             durationMillis = durationMillis,
             easing = LinearEasing,
-            delayMillis = TabFadeInAnimationDelay
+            delayMillis = TAB_FADE_IN_ANIMATION_DELAY
         )
     }
     val tabTintColor by animateColorAsState(
-        targetValue = if (selected) color else color.copy(alpha = InactiveTabOpacity),
-        animationSpec = animSpec
+        targetValue = if (selected) color else color.copy(alpha = INACTIVE_TAB_OPACITY),
+        animationSpec = animSpec, label = "tab"
     )
     Row(
         modifier = Modifier
@@ -106,7 +116,7 @@ private fun appTab(
                 onClick = onSelected,
                 role = Role.Tab,
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple(
+                indication = ripple (
                     bounded = false,
                     radius = Dp.Unspecified,
                     color = Color.Unspecified
@@ -122,9 +132,4 @@ private fun appTab(
     }
 }
 
-val TabHeight = 70.dp
-private const val InactiveTabOpacity = 0.20f
 
-private const val TabFadeInAnimationDuration = 300
-private const val TabFadeInAnimationDelay = 100
-private const val TabFadeOutAnimationDuration = 200

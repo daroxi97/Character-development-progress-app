@@ -3,7 +3,7 @@ package com.example.characterDevelopment.data.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -43,10 +43,13 @@ private fun reformatDateToDataBase(dateString: String): String {
     return try {
         // Modificar el formato para que Room pueda ordenar adecuadamente los caracteres por fecha
         val initialFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val date: Date = initialFormat.parse(dateString)
-
+        val date: Date? = initialFormat.parse(dateString)
         val desiredFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        desiredFormat.format(date)
+        if (date != null) {
+            desiredFormat.format(date)
+        } else {
+            dateString
+        }
     } catch (e: ParseException) {
         e.printStackTrace()
         dateString
@@ -68,7 +71,7 @@ enum class PhysicalCondition(var description: String) {
 }
 
 //Create the list of moods this way so in case I add more moods later, it will get updated automatically in the rest of the app.
-var moods: List<String> = emptyList()
+val moods: List<String>
     get() {
         return mutableListOf<String>().apply {
             for (moodValue in Mood.values()) {
@@ -77,7 +80,7 @@ var moods: List<String> = emptyList()
         }
     }
 
-var healths: List<String> = emptyList()
+val healths: List<String>
     get() {
         return mutableListOf<String>().apply {
             for (healthValue in Health.values()) {
@@ -86,7 +89,7 @@ var healths: List<String> = emptyList()
         }
     }
 
-var physicalConditions: List<String> = emptyList()
+val physicalConditions: List<String>
     get() {
         return mutableListOf<String>().apply {
             for (physicValue in PhysicalCondition.values()) {

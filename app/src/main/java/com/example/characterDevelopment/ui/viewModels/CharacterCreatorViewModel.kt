@@ -1,6 +1,5 @@
-package com.example.characterDevelopment.ui.ViewModels
+package com.example.characterDevelopment.ui.viewModels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,19 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.characterDevelopment.data.database.entities.Health
 import com.example.characterDevelopment.data.database.entities.Mood
 import com.example.characterDevelopment.data.database.entities.PhysicalCondition
-import com.example.characterDevelopment.data.database.entities.Order
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
-import com.example.characterDevelopment.domain.UseCases.DeleteAllCharactersUseCase
-import com.example.characterDevelopment.domain.UseCases.DeleteCharacterUseCase
-import com.example.characterDevelopment.domain.UseCases.GetCharactersUseCase
-import com.example.characterDevelopment.domain.UseCases.GetSettingsUseCase
-import com.example.characterDevelopment.domain.UseCases.SaveCharacterUseCase
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
+import com.example.characterDevelopment.domain.useCases.DeleteAllCharactersUseCase
+import com.example.characterDevelopment.domain.useCases.DeleteCharacterUseCase
+import com.example.characterDevelopment.domain.useCases.GetCharactersUseCase
+import com.example.characterDevelopment.domain.useCases.GetSettingsUseCase
+import com.example.characterDevelopment.domain.useCases.SaveCharacterUseCase
 import com.example.characterDevelopment.utils.getOrderFromDescription
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.math.log2
 
 @HiltViewModel
 class CharacterCreatorViewModel @Inject constructor(
@@ -41,7 +37,7 @@ class CharacterCreatorViewModel @Inject constructor(
     val currentCharacter: LiveData<CharacterDomainModel> get() = _currentCharacter
 
     //I use this variable to make sure the list of profiles is updated before letting the user trying to use them
-    private val _firstCoroutineCompleted = MutableLiveData<Boolean>(false)
+    private val _firstCoroutineCompleted = MutableLiveData(false)
     val firstCoroutineCompleted: LiveData<Boolean> get() = _firstCoroutineCompleted
 
     init {
@@ -50,9 +46,9 @@ class CharacterCreatorViewModel @Inject constructor(
 
     private fun updateListOfCharacters() {
         //Update the list of profiles with the information of the database.
-        viewModelScope.launch() {
-            var configuration = getSettingsUseCase()
-            var characters = getCharactersUseCase(configuration.order)
+        viewModelScope.launch {
+            val configuration = getSettingsUseCase()
+            val characters = getCharactersUseCase(configuration.order)
             _listCharacters.value = characters
             _firstCoroutineCompleted.value = true
         }
@@ -70,7 +66,7 @@ class CharacterCreatorViewModel @Inject constructor(
         mainCharacter: Boolean
     ) {
         //Pass variables one by one instead of passing directly the domainModel, to give less responsibilities to the view
-        var character = CharacterDomainModel(
+        val character = CharacterDomainModel(
             name,
             date,
             salary,
@@ -111,9 +107,9 @@ class CharacterCreatorViewModel @Inject constructor(
 
     fun reorderCharacterList(orderDescription: String) {
         //Reorder the actual list of profiles. The configuration save of the new reorder relies on configuration viewModel.
-        viewModelScope.launch() {
-            var orderPattern = getOrderFromDescription(orderDescription)
-            var characters = getCharactersUseCase(orderPattern)
+        viewModelScope.launch {
+            val orderPattern = getOrderFromDescription(orderDescription)
+            val characters = getCharactersUseCase(orderPattern)
             _listCharacters.value = characters
         }
     }

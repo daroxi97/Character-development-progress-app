@@ -1,22 +1,4 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-@file:JvmName("DropDownMenuKt")
-
-package com.example.compose.rally.ui.components
+package com.example.characterDevelopment.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,13 +11,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -47,7 +29,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-
+/**
+ * A row with a title and content. If presses appears a dropdown with different elements. The selected one will be the content
+ */
 @Composable
 fun dropDownMenuRow(
     title: String, elements: List<String>, rowHeight: Dp = 68.dp
@@ -62,7 +46,7 @@ fun dropDownMenuRow(
         Icons.Filled.KeyboardArrowDown
 
 
-    Column() {
+    Column {
 
         ClickableSimpleTextField(
             title = title,
@@ -84,19 +68,20 @@ fun dropDownMenuRow(
                 DropdownMenuItem(onClick = {
                     selectedText = label
                     expanded = false
-                }) {
-                    Text(text = label)
-                }
+                }, text = { Text(text = label) })
             }
         }
-        RallyDivider()
+        AppUiDivider()
 
 
     }
-    return selectedText.toString()
+    return selectedText
 
 }
 
+/**
+ * Same as dropDownMenuRow, but this time will have a confirmation dialog.
+ */
 @Composable
 fun dropDownMenuRowWithConfirmation(
     title: String,
@@ -121,7 +106,7 @@ fun dropDownMenuRowWithConfirmation(
         Icons.Filled.KeyboardArrowDown
 
 
-    Column() {
+    Column {
 
         ClickableSimpleTextField(
             title = title,
@@ -155,73 +140,20 @@ fun dropDownMenuRowWithConfirmation(
                     confirmDialog = true
                     savedLabel = label
                     expanded = false
-                }) {
-                    Text(text = label)
-                }
+                }, text = { Text(text = label) })
             }
         }
-        RallyDivider()
+        AppUiDivider()
 
 
     }
-    return selectedText.toString()
+    return selectedText
 
 }
 
-@Composable
-fun ClickableSimpleTextFieldWithConfirmation(
-    title: String,
-    text: String,
-    confirmationTitle: String,
-    confirmationSubtitle: String,
-    rowHeight: Dp = 68.dp,
-    clickAction: () -> Unit = {},
-) {
-
-    var confirmDialog: Boolean by remember { mutableStateOf(false) }
-    var expanded by remember { mutableStateOf(false) }
-
-    val icon = if (expanded)
-        Icons.Filled.KeyboardArrowUp
-    else
-        Icons.Filled.KeyboardArrowDown
-
-
-    Column() {
-
-        ClickableSimpleTextField(
-            title = title,
-            text = text,
-            clickAction = {
-                confirmDialog = true
-                expanded = !expanded
-            },
-            icon = icon,
-            rowHeight = rowHeight,
-            modifier = Modifier.height(rowHeight)
-        )
-
-        ConfirmationDialog(
-            confirmationTitle,
-            confirmationSubtitle,
-            confirmDialog,
-            {
-                confirmDialog = false
-                expanded = false
-            },
-            {
-                clickAction()
-                confirmDialog = false
-                expanded = false
-
-            })
-
-        RallyDivider()
-
-    }
-}
-
-
+/**
+ * An image that if is pressed show a dropdown with different options
+ */
 @Composable
 fun dropDownMenuIcon(
     image: ImageVector,
@@ -264,16 +196,15 @@ fun dropDownMenuIcon(
                         selectedText = label
                         expanded = false
                         clickAction(selectedText)
-                    }) {
+                    }, text = {
                         Text(text = label)
-                    }
+                    })
 
                 }
             }
         }
 
-
     }
-    return selectedText.toString()
+    return selectedText
 
 }

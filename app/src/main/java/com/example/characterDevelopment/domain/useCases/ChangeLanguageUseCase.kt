@@ -1,4 +1,4 @@
-package com.example.characterDevelopment.domain.UseCases
+package com.example.characterDevelopment.domain.useCases
 
 import android.app.LocaleManager
 import android.content.Context

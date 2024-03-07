@@ -1,22 +1,5 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.example.characterDevelopment.ui.charactersList
 
-package com.example.characterDevelopment.ui.CharactersList
-
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,12 +11,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Reorder
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -45,35 +28,34 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.compose.rally.ui.components.AppTabsRow
-import com.example.compose.rally.ui.components.CharacterRow
-import com.example.compose.rally.ui.components.ConfirmationDialog
-import com.example.compose.rally.ui.components.dropDownMenuIcon
+import com.example.characterDevelopment.ui.components.AppTabsRow
+import com.example.characterDevelopment.ui.components.CharacterRow
+import com.example.characterDevelopment.ui.components.ConfirmationDialog
+import com.example.characterDevelopment.ui.components.dropDownMenuIcon
 import com.example.characterDevelopment.R
-import com.example.characterDevelopment.data.database.entities.Order
 import com.example.characterDevelopment.data.database.entities.orders
-import com.example.characterDevelopment.domain.Models.CharacterDomainModel
-import com.example.characterDevelopment.ui.CharacterLevel.CharacterScreen
-import com.example.characterDevelopment.ui.ViewModels.CharacterCreatorViewModel
-import com.example.characterDevelopment.ui.ViewModels.SettingsViewModel
-import com.example.characterDevelopment.ui.Views.AppSettings
-import com.example.characterDevelopment.ui.Views.AppDestinations
-import com.example.characterDevelopment.ui.Views.CharactersList
-import com.example.characterDevelopment.ui.Views.MainCharacter
-import com.example.characterDevelopment.ui.Views.addCharacterRoute
-import com.example.characterDevelopment.ui.Views.appTabRowScreen
-import com.example.characterDevelopment.ui.Views.updateTextsLanguage
+import com.example.characterDevelopment.domain.models.CharacterDomainModel
+import com.example.characterDevelopment.ui.characterLevel.CharacterScreen
+import com.example.characterDevelopment.ui.viewModels.CharacterCreatorViewModel
+import com.example.characterDevelopment.ui.viewModels.SettingsViewModel
+import com.example.characterDevelopment.ui.views.AppSettings
+import com.example.characterDevelopment.ui.views.AppScreens
+import com.example.characterDevelopment.ui.views.CharactersList
+import com.example.characterDevelopment.ui.views.MainCharacter
+import com.example.characterDevelopment.ui.views.addCharacterRoute
+import com.example.characterDevelopment.ui.views.appTabRowScreen
+import com.example.characterDevelopment.ui.views.UpdateTextsLanguage
 import com.example.characterDevelopment.ui.appConfiguration.ConfigurationScreen
 
 @Composable
-fun characterListScreen(
+fun CharacterListScreen(
     navController: NavController,
     charactersVm: CharacterCreatorViewModel,
     settingsVm: SettingsViewModel
 ) {
-    updateTextsLanguage()
+    UpdateTextsLanguage()
 
-    var currentScreen: AppDestinations by remember { mutableStateOf(CharactersList) }
+    var currentScreen: AppScreens by remember { mutableStateOf(CharactersList) }
 
     //After changing configuration, sometimes the app gets restarted, in this case return to config screen
     if (settingsVm.updateConfiguration) {
@@ -85,7 +67,7 @@ fun characterListScreen(
         topBar = {
             AppTabsRow(
                 allScreens = appTabRowScreen,
-                onTabSelected = { screen: AppDestinations ->
+                onTabSelected = { screen: AppScreens ->
                     currentScreen = screen
                 },
                 currentScreen = currentScreen,
@@ -158,8 +140,8 @@ fun CharacterListScreenContent(
                     charactersViewModel.reorderCharacterList(it)
                 }
                 //List of created character profiles
-                characters?.let {
-                    it.forEach() { character ->
+                characters?.let { profile ->
+                    profile.forEach { character ->
                         CharacterRow(
                             Modifier.clickable {
                                 //if click a profile go to more info screen
@@ -186,7 +168,7 @@ fun CharacterListScreenContent(
                             },
                             {
                                 //if press confirm
-                                deletedCharacter?.let { it ->
+                                deletedCharacter?.let {
                                     charactersViewModel.removeCharacter(it.id)
                                 }
                                 confirmDialog = false

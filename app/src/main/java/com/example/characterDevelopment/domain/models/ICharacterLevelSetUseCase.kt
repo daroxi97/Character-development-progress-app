@@ -1,4 +1,4 @@
-package com.example.characterDevelopment.domain.Models
+package com.example.characterDevelopment.domain.models
 
 
 interface ICharacterLevelSetUseCase {

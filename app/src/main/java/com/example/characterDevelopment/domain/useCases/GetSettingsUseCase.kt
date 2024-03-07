@@ -1,10 +1,10 @@
-package com.example.characterDevelopment.domain.UseCases
+package com.example.characterDevelopment.domain.useCases
 
 import com.example.characterDevelopment.data.database.entities.AppLanguage
 import com.example.characterDevelopment.data.database.entities.Order
 import com.example.characterDevelopment.data.database.entities.Theme
 import com.example.characterDevelopment.data.repository.SettingsRepositoryImpl
-import com.example.characterDevelopment.domain.Models.SettingsDomainModel
+import com.example.characterDevelopment.domain.models.SettingsDomainModel
 import javax.inject.Inject
 
 class GetSettingsUseCase @Inject constructor(private val repository: SettingsRepositoryImpl) {
